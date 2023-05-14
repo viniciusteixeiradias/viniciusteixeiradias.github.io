@@ -1,9 +1,6 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
-env:
-  VITE_INTERNAL: true
-  
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -40,6 +37,8 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
+        env:
+          VITE_APP_TOKEN_GIT: ${{ secrets.VITE_APP_TOKEN_GIT }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
